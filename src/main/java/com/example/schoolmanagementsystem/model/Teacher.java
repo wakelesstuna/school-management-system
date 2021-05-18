@@ -1,16 +1,17 @@
 package com.example.schoolmanagementsystem.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Data
+@Accessors(chain = true)
 public class Teacher {
 
     @Id
@@ -23,6 +24,4 @@ public class Teacher {
 
     private String email;
 
-    @OneToMany
-    private List<Course> courses;
 }
