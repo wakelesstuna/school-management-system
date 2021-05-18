@@ -35,6 +35,12 @@ public class TeacherService {
     }
 
     private void validateTeacher(Teacher teacher) {
+        if (teacher.getName() == null || teacher.getName().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "teacher must have a name");
+        }
+        if (teacher.getEmail() == null || teacher.getEmail().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "teacher must have a email");
+        }
         if (teacherRepository.findByEmail(teacher.getEmail()).isPresent()){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "email already taken");
         }

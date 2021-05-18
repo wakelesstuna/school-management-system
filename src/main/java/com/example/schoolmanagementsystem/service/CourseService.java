@@ -27,6 +27,7 @@ public class CourseService {
     }
 
     public Course addCourse(Course course) {
+        validateCourse(course);
         return courseRepository.save(course);
     }
 
@@ -38,9 +39,7 @@ public class CourseService {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "no course with that id found");
     }
 
-    private boolean validateCourseId(UUID courseId) {
-        return courseRepository.findById(courseId).isPresent();
-    }
+
 
 
     public Course addTeacherToCourse(UUID courseId, String teacherEmail) {
@@ -57,5 +56,15 @@ public class CourseService {
                 });
 
         return courseRepository.getOne(courseId);
+    }
+
+    private boolean validateCourseId(UUID courseId) {
+        return courseRepository.findById(courseId).isPresent();
+    }
+
+    private void validateCourse(Course course){
+        if (course.getName() == null || course.getName().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "teacher must have a name");
+        }
     }
 }
