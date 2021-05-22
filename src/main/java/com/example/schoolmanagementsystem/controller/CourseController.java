@@ -38,4 +38,10 @@ public class CourseController {
         return ResponseEntity.ok(courseService.addTeacherToCourse(courseId,teacherEmail));
     }
 
+    @GetMapping("/add/presence")
+    public ResponseEntity<String> addPresence(@RequestParam UUID courseId,
+                                              @RequestParam UUID studentId) {
+        return ResponseEntity.ok(courseService.addPresence(courseId,studentId));
+    }
+
 }

@@ -22,5 +22,8 @@ public class Course {
     private Teacher teacher;
 
     @OneToMany
+    private List<Student> students;
+
+    @OneToMany
     private List<Lesson> lessons;
 }
