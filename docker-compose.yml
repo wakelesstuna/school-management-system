@@ -13,7 +13,7 @@ services:
       POSTGRESQL_DB: school
 
   spring-boot-app:
-    build: .
+    build: ..
     container_name: school_system_app
     ports:
       - 8080:8080
